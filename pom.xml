@@ -134,6 +134,15 @@
       <systemPath>${basedir}/lib/jmc.jar</systemPath>
     </dependency>
 
+    <!-- PNG Decoder.  used by sgine. -->
+    <dependency>
+      <groupId>PNGDecoder</groupId>
+      <artifactId>PNGDecoder</artifactId>
+      <version>unknown</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/PNGDecoder.jar</systemPath>
+    </dependency>
+
     <!-- 3D Math.  Used by sgine -->
     <dependency>
       <groupId>simplex3d_core</groupId>
