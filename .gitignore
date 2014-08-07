@@ -3,4 +3,3 @@ target/
 .idea/
 *.iml
 out/
-ardorSettings.properties
