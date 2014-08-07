@@ -24,6 +24,8 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+
+        maven { url "https://raw.github.com/zzorn/maven-repo/master/repository/" }
     }
 }
 
@@ -76,6 +78,15 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+
+        // Logging
+        compile "org.slf4j:slf4j-simple:1.7.6"
+
+        // Utils
+        compile "org.flowutils:flowutils:0.1.30"
+
+        // Entity framework
+        compile "org.entityflow:entityflow:0.5.0"
     }
 }
 
