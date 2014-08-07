@@ -14,6 +14,7 @@ public class DesktopLauncher {
     private static final String PROGRAM_STRING = "spacegame";
     private static final String ASSET_SOURCE_PATH = "../../asset-sources/textures/";
     private static final String ASSET_TARGET_PATH = "./textures/";
+    private static final String ATLAS_FILENAME = "textures.atlas";
 
     public static void main (String[] arg) {
 
@@ -39,16 +40,17 @@ public class DesktopLauncher {
         }
 
         // Re-pack textures if desired
+        // NOTE: This is now part of the build
         if (spaceGameStartOptions.isPackTextures()) {
             // Clear out previous atlas
-            File target = new File(ASSET_TARGET_PATH + "textures.json");
+            File target = new File(ASSET_TARGET_PATH + ATLAS_FILENAME);
             if (target.exists()) target.delete();
 
             // Generate atlas
             TexturePacker.Settings settings = new TexturePacker.Settings();
             settings.maxWidth = 512;
             settings.maxHeight = 512;
-            TexturePacker.process(settings, ASSET_SOURCE_PATH, ASSET_TARGET_PATH, "textures.json");
+            TexturePacker.process(settings, ASSET_SOURCE_PATH, ASSET_TARGET_PATH, ATLAS_FILENAME);
         }
 
         // Start game

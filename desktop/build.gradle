@@ -6,6 +6,13 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 project.ext.mainClassName = "org.spacegame.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../android/assets");
 
+task packTextures(dependsOn: classes, type: JavaExec) {
+    main = 'com.badlogic.gdx.tools.texturepacker.TexturePacker'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['../asset-sources/textures', '../android/assets/textures', 'textures.atlas']
+}
+
+
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
@@ -13,6 +20,9 @@ task run(dependsOn: classes, type: JavaExec) {
     workingDir = project.assetsDir
     ignoreExitValue = true
 }
+
+run.dependsOn packTextures
+
 
 task dist(type: Jar) {
     from files(sourceSets.main.output.classesDir)
@@ -26,6 +36,9 @@ task dist(type: Jar) {
 }
 
 dist.dependsOn classes
+dist.dependsOn packTextures
+
+
 
 eclipse {
     project {

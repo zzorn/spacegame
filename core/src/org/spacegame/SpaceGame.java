@@ -27,7 +27,7 @@ public class SpaceGame extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-        textureAtlas = new TextureAtlas("textures/textures.json");
+        textureAtlas = new TextureAtlas("textures/textures.atlas");
 
         image = textureAtlas.findRegion("turbulent01");
 
