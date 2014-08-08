@@ -67,6 +67,17 @@ project(":android") {
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
     }
+
+
+    android {
+        packagingOptions {
+            // Remove duplicate files
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+        }
+    }
 }
 
 project(":core") {
@@ -97,3 +108,5 @@ project(":core") {
 tasks.eclipse.doLast {
     delete ".project"
 }
+
+
