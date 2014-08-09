@@ -13,7 +13,7 @@ import org.entityflow.processors.EntityProcessorBase;
 import org.flowutils.MathUtils;
 import org.flowutils.time.Time;
 import org.spacegame.components.CameraComponent;
-import org.spacegame.components.LocationComponent;
+import org.spacegame.components.Location;
 import org.spacegame.components.appearance.Appearance;
 
 /**
@@ -44,7 +44,7 @@ public class CameraProcessor extends EntityProcessorBase {
 
     public CameraProcessor(RenderingProcessor renderingProcessor,
                            InputMultiplexer inputHandler) {
-        super(LocationComponent.class, CameraComponent.class);
+        super(Location.class, CameraComponent.class);
         this.renderingProcessor = renderingProcessor;
 
         inputHandler.addProcessor(cameraInputHandler);
@@ -116,7 +116,7 @@ public class CameraProcessor extends EntityProcessorBase {
     private void updateCameraPos() {
 
         if (currentCameraEntity != null) {
-            final LocationComponent location = currentCameraEntity.get(LocationComponent.class);
+            final Location location = currentCameraEntity.get(Location.class);
             final CameraComponent cameraComponent = currentCameraEntity.get(CameraComponent.class);
             if (location != null) {
                 final PerspectiveCamera camera = getCamera();

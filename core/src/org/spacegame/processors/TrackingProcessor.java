@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 import org.entityflow.entity.Entity;
 import org.entityflow.processors.EntityProcessorBase;
 import org.flowutils.time.Time;
-import org.spacegame.components.LocationComponent;
+import org.spacegame.components.Location;
 import org.spacegame.components.TrackingComponent;
 
 /**
@@ -18,16 +18,16 @@ public final class TrackingProcessor extends EntityProcessorBase {
 
 
     public TrackingProcessor() {
-        super(TrackingComponent.class, LocationComponent.class);
+        super(TrackingComponent.class, Location.class);
     }
 
     @Override protected void processEntity(Time time, Entity entity) {
         final TrackingComponent tracking = entity.get(TrackingComponent.class);
-        final LocationComponent location = entity.get(LocationComponent.class);
+        final Location location = entity.get(Location.class);
 
         final Entity trackedEntity = tracking.trackedEntity;
         if (trackedEntity != null) {
-            final LocationComponent trackedLocation = trackedEntity.get(LocationComponent.class);
+            final Location trackedLocation = trackedEntity.get(Location.class);
             if (trackedLocation != null) {
 
                 // Calculate relative position in target entity model space

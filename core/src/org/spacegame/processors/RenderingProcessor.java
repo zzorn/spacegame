@@ -9,12 +9,11 @@ import com.badlogic.gdx.graphics.g3d.*;
 import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
-import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import org.entityflow.entity.Entity;
 import org.entityflow.processors.EntityProcessorBase;
 import org.flowutils.time.Time;
-import org.spacegame.components.LocationComponent;
+import org.spacegame.components.Location;
 import org.spacegame.components.appearance.Appearance;
 import org.spacegame.shader.SpecialAttribute;
 
@@ -51,7 +50,7 @@ public class RenderingProcessor extends EntityProcessorBase {
     }
 
     public RenderingProcessor(Shader shader) {
-        super(Appearance.class, LocationComponent.class);
+        super(Appearance.class, Location.class);
         this.shader = shader;
     }
 
@@ -155,7 +154,7 @@ public class RenderingProcessor extends EntityProcessorBase {
     }
 
     @Override protected void processEntity(Time time, Entity entity) {
-        final LocationComponent location = entity.get(LocationComponent.class);
+        final Location location = entity.get(Location.class);
         final Appearance appearance = entity.get(Appearance.class);
 
         if (appearance != null && location != null && appearance.isVisible()) {

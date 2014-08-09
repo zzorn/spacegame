@@ -9,14 +9,17 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.bullet.collision.btSphereShape;
 import org.entityflow.entity.Entity;
 import org.entityflow.world.ConcurrentWorld;
 import org.flowutils.LogUtils;
 import org.flowutils.time.RealTime;
 import org.slf4j.Logger;
 import org.spacegame.components.CameraComponent;
-import org.spacegame.components.LocationComponent;
+import org.spacegame.components.Location;
+import org.spacegame.components.Physical;
 import org.spacegame.components.appearance.SphereAppearance;
+import org.spacegame.processors.BulletPhysicsProcessor;
 import org.spacegame.processors.CameraProcessor;
 import org.spacegame.processors.RenderingProcessor;
 import org.spacegame.processors.TrackingProcessor;
@@ -51,6 +54,7 @@ public class SpaceGame extends ApplicationAdapter {
         renderingProcessor = new RenderingProcessor(null);
         world.addProcessor(new CameraProcessor(renderingProcessor, inputHandler));
         world.addProcessor(renderingProcessor);
+        world.addProcessor(new BulletPhysicsProcessor());
 
 
         // Setup input handler
@@ -63,14 +67,14 @@ public class SpaceGame extends ApplicationAdapter {
 
         // Create player
         //final Entity player = entityFactory.createPlayerSubmarine(tempPos.set(0, 0, 0), 0.3f, 0.7f, inputHandler);
-        Entity player = world.createEntity(new LocationComponent(),
+        Entity player = world.createEntity(new Location(),
                                            new CameraComponent());
         player.get(CameraComponent.class).entityToHideWhenCameraActive = player;
 
-        // Create some planets
+        // Create some asteroid things
         Random random = new Random();
         float spread = 1000;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 2000; i++) {
 
             tempPos.set((float) random.nextGaussian() * spread,
                         (float) random.nextGaussian() * spread ,
@@ -83,7 +87,8 @@ public class SpaceGame extends ApplicationAdapter {
                                           random.nextFloat(), 1);
 
             world.createEntity(new SphereAppearance(color, size),
-                               new LocationComponent(tempPos));
+                               new Location(tempPos),
+                               new Physical(new btSphereShape(size / 2)));
         }
 
         setupControllerTest();
