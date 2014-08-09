@@ -26,6 +26,10 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 
         maven { url "https://raw.github.com/zzorn/maven-repo/master/repository/" }
+
+        // For janino (required by flowutils)
+        // TODO: Remove janino dependency from flowutils so that it doesn't require a custom repository, move code generation to a separate library
+        maven { url "http://conjars.org/repo/" }
     }
 }
 
